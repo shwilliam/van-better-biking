@@ -269,15 +269,23 @@ const Map = props => {
       ],
     })
     const directionsService = new google.maps.DirectionsService()
-    const directionsRenderer = new google.maps.DirectionsRenderer()
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+      polylineOptions: {
+      strokeColor: "red"
+      }
+    })
+    // const directionsDisplay = new google.maps.DirectionsRenderer({
+    //   polylineOptions: {
+    //   strokeColor: "red"
+    //   }
+    // })
 
     const bikeLayer = new google.maps.BicyclingLayer()
     bikeLayer.setMap(gmap)
 
-    directionsRenderer.setMap(gmap)
-
     setDirectionsRenderer(directionsRenderer)
     setDirectionsService(directionsService)
+    
     setMap(gmap)
 
     let heatmapData = [
