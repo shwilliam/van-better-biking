@@ -4,7 +4,12 @@ import {MapContext} from '../../context'
 import './index.css'
 
 const Map = props => {
-  const {map, setMap} = useContext(MapContext)
+  const {
+    map,
+    setMap,
+    setDirectionsRenderer,
+    setDirectionsService,
+  } = useContext(MapContext)
 
   useLayoutEffect(() => {
     if (map) return
@@ -13,12 +18,18 @@ const Map = props => {
       center: {lat: -34.397, lng: 150.644},
       zoom: 8,
     })
+    const directionsService = new google.maps.DirectionsService()
+    const directionsRenderer = new google.maps.DirectionsRenderer()
 
     const bikeLayer = new google.maps.BicyclingLayer()
     bikeLayer.setMap(gmap)
 
+    directionsRenderer.setMap(gmap)
+
+    setDirectionsRenderer(directionsRenderer)
+    setDirectionsService(directionsService)
     setMap(gmap)
-  }, [map, setMap])
+  }, [map, setMap, setDirectionsService, setDirectionsRenderer])
 
   return (
     <div
