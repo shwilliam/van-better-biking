@@ -2,7 +2,7 @@
 import React, {useContext, useLayoutEffect} from 'react'
 import {MapContext} from '../../context'
 import './index.css'
-// import bikeRacks from './bike-racks'
+import bikeRacks from '../../bike-racks'
 
 const Map = props => {
   const {
@@ -284,6 +284,14 @@ const Map = props => {
     setDirectionsService(directionsService)
 
     setMap(gmap)
+
+    bikeRacks.forEach(rack => {
+      new google.maps.Marker({
+        position: rack.coords,
+        map: gmap,
+        title: 'Hello World!',
+      })
+    })
 
     let heatmapData = [
       new google.maps.LatLng(49.2827, -123.1207),
