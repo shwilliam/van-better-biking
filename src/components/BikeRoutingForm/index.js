@@ -1,20 +1,30 @@
-import React, {useCallback, useState} from 'react'
+import React, {useCallback, useContext, useState} from 'react'
+import {MapContext} from '../../context'
 
 const BikeRoutingForm = props => {
+  const {directionsService, directionsRenderer} = useContext(
+    MapContext,
+  )
   const [toValue, setToValue] = useState('')
   const [fromValue, setFromValue] = useState('')
 
   const handleSubmit = useCallback(
     e => {
       e.preventDefault()
-      console.log(toValue, fromValue)
-      // get coordinates of address
-      // get route
-      // cache in context
+      var request = {
+        origin: fromValue,
+        destination: toValue,
+        travelMode: 'DRIVING',
+      }
+      directionsService.route(request, function(result, status) {
+        if (status === 'OK') {
+          directionsRenderer.setDirections(result)
+        }
+      })
       setToValue('')
       setFromValue('')
     },
-    [fromValue, toValue],
+    [fromValue, toValue, directionsRenderer, directionsService],
   )
 
   return (

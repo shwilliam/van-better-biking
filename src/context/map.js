@@ -1,16 +1,23 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 const MapContext = React.createContext()
 
 export const MapContextProvider = ({children}) => {
   const [map, setMap] = useState()
-
-  useEffect(() => {
-    // init map
-  }, [])
+  const [directionsRenderer, setDirectionsRenderer] = useState()
+  const [directionsService, setDirectionsService] = useState()
 
   return (
-    <MapContext.Provider value={{map, setMap}}>
+    <MapContext.Provider
+      value={{
+        map,
+        setMap,
+        directionsRenderer,
+        setDirectionsRenderer,
+        directionsService,
+        setDirectionsService,
+      }}
+    >
       {children}
     </MapContext.Provider>
   )
