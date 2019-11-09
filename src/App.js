@@ -1,14 +1,19 @@
 import React from 'react'
 import Map from './components/Map'
+import BikeRoutingForm from './components/BikeRoutingForm'
+import {
+  MapContextProvider,
+  BikeRoutingContextProvider,
+} from './context'
 import './App.css'
 
 const App = () => (
-  <Map
-    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_KEY}&v=3.exp&libraries=geometry,drawing,places`}
-    loadingElement={<div style={{height: '100%'}} />}
-    containerElement={<div style={{height: '400px'}} />}
-    mapElement={<div style={{height: '100%'}} />}
-  />
+  <MapContextProvider>
+    <BikeRoutingContextProvider>
+      <Map />
+      <BikeRoutingForm style={{position: 'absolute', top: 0}} />
+    </BikeRoutingContextProvider>
+  </MapContextProvider>
 )
 
 export default App
