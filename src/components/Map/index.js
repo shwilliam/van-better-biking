@@ -9,13 +9,16 @@ const Map = props => {
   useLayoutEffect(() => {
     if (map) return
 
-    setMap(
-      new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8,
-      }),
-    )
-  }, [])
+    const gmap = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8,
+    })
+
+    const bikeLayer = new google.maps.BicyclingLayer()
+    bikeLayer.setMap(gmap)
+
+    setMap(gmap)
+  }, [map, setMap])
 
   return (
     <div
