@@ -1,0 +1,68 @@
+.stack-btn {
+  z-index: 999;
+  position: absolute;
+  top: 65px;
+  right: 7px;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.layers-container {
+  z-index: 999;
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  transform: translateX(200px);
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.layers-container--open {
+  opacity: 1;
+  transform: translateX(-200px);
+}
+
+.heatmap-container {
+  background-color: rgb(255, 255, 255);
+  width: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50px;
+  border-radius: 5px;
+  padding: 0.3rem 0.16rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+  outline: currentcolor none medium;
+}
+
+.heatmap-container p {
+  font-weight: 500;
+  font-size: 16px;
+  padding: 1rem 1.4rem 0.2rem 1.4rem;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.heatmap-list {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  justify-content: space-evenly;
+  padding: 0.5rem 0;
+}
+
+.heatmap-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.layers-container button,
+.stack-btn {
+  border: none;
+  cursor: pointer;
+  background: #fff;
+}

@@ -1,7 +1,5 @@
 import React, {useCallback, useContext, useState} from 'react'
 import {MapContext} from '../../context'
-import HeatMapContainer from '../HeatMap/HeatMapContainer';
-import StackBtn from '../HeatMap/StackBtn';
 import './index.css'
 
 const BikeRoutingForm = props => {
@@ -46,8 +44,6 @@ const BikeRoutingForm = props => {
         className="pointB"
         placeholder="To"
       />
-      <StackBtn />
-      <HeatMapContainer />
       <button type="submit" hidden>
         Go
       </button>
