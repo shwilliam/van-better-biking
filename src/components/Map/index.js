@@ -138,8 +138,11 @@ const Map = props => {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#f5f1e6',
+              color: '#3299CC',
             },
+            {
+              weight: '0.8',
+            }
           ],
         },
         {
