@@ -1,32 +1,32 @@
-// import React, { Component } from 'react'
-// import './index.css'
+import React, { Component } from 'react'
+import './index.css'
 
-// class Weather extends Component {
-//     constructor() {
-//         super();
-//         this.state = { data: [] };
-//     }
+class Weather extends Component {
+    constructor() {
+        super();
+        this.state = { data: [] };
+    }
 
-//     componentDidMount() {
-//         fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ec1df8487dd99e172a69dc18ab26306a/49.279652,-123.126151`)
-//         .then(res => res.json())
-//         .then(api => {
-//             this.setState([{
-//                 temperature: `°${api.currently.temperature}`,
-//                 summary: `Weather conditions: ${api.currently.summary}`,
-//                 precipity: `Chance of rain: ${api.currently.precipProbability}%`
-//             }])
-//     render() {
-//         return (
-//             <div className="location">
-//                 {this.state.data.map(weather => {
-//                     <p>{weather.temperature}</p>
-//                     <p>{weather.summary}</p>
-//                     <p>{weather.precipity}</p>
-//                 })}
-//             </div>
-//         )
-//     }
-// }
+    componentDidMount() {
+        const that = this;
+        fetch(`https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/ec1df8487dd99e172a69dc18ab26306a/49.279652,-123.126151?exclude=minutely,hourly,daily,flags`)
+        .then(response => response.json())
+        .then(json => this.setState({ data: json.currently }));
+    }   
+    
+    render() {
+        return (
+            <div className="location">
+                {!this.state.data || !this.state.data.summary ? 'Loading...' : 
+                    (<>
+                        <p style={{fontWeight: 'bold'}}>{this.state.data.summary}</p>
+                        <p>Chance of rain: {this.state.data.precipProbability * 100}%</p>
+                        <p>Temp: {this.state.data.temperature} ºF</p>
+                    </>)
+                }
+            </div>
+        )
+    }
+}
 
-// export default Weather
+export default Weather

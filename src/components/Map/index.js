@@ -10,7 +10,6 @@ const Map = props => {
     setMap,
     setDirectionsRenderer,
     setDirectionsService,
-    setMarkers,
   } = useContext(MapContext)
 
   useLayoutEffect(() => {
@@ -286,7 +285,6 @@ const Map = props => {
       anchor: new google.maps.Point(0, 32),
     }
 
-    const markers = []
     bikeRacks.forEach(rack => {
       if (!rack.coords) return
       const marker = new google.maps.Marker({
@@ -295,7 +293,6 @@ const Map = props => {
         title: String(rack.fields.number_of_racks),
         icon: rackImage,
       })
-      markers.push(marker)
       google.maps.event.addListener(
         marker,
         'click',
@@ -309,14 +306,7 @@ const Map = props => {
         })(marker),
       )
     })
-    setMarkers(markers)
-  }, [
-    map,
-    setMap,
-    setDirectionsService,
-    setDirectionsRenderer,
-    setMarkers,
-  ])
+  }, [map, setMap, setDirectionsService, setDirectionsRenderer])
 
   return (
     <div
