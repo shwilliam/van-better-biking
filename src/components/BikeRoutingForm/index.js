@@ -1,5 +1,6 @@
 import React, {useCallback, useContext, useState} from 'react'
 import {MapContext} from '../../context'
+import styled from 'styled-components'
 
 const BikeRoutingForm = props => {
   const {directionsService, directionsRenderer} = useContext(
@@ -27,6 +28,10 @@ const BikeRoutingForm = props => {
     [fromValue, toValue, directionsRenderer, directionsService],
   )
 
+    const RouteButton = styled.button`
+      display: none;
+    `;
+
   return (
     <form onSubmit={handleSubmit} {...props}>
       <input
@@ -39,7 +44,7 @@ const BikeRoutingForm = props => {
         onChange={e => setToValue(e.target.value)}
         type="text"
       />
-      <button type="submit">route</button>
+      <RouteButton>submit</RouteButton>
     </form>
   )
 }
