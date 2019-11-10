@@ -1,9 +1,8 @@
 import React from 'react'
-import thiefImg from './assets/thief.png'
 
-const ThiefBtn = props => (
+const ThiefBtn = ({icon, ...props}) => (
   <button type="button" {...props}>
-    <img src={thiefImg} />
+    <img src={icon} />
   </button>
 )
 

@@ -2,15 +2,16 @@ import React, {useContext, useState} from 'react'
 import {MapContext} from '../../context'
 import getData from '../../utils/get-data'
 import StackBtn from './StackBtn'
-import ThiefBtn from './ThiefBtn'
 import RackBtn from './RackBtn'
+import ThiefBtn from './ThiefBtn'
 import CollisionBtn from './CollisionBtn'
+import rackImgOn from './assets/rack.png'
+import rackImgOff from './assets/rack--off.png'
+import thiefImgOn from './assets/thief.png'
+import thiefImgOff from './assets/thief--off.png'
+import collisionImgOn from './assets/collision.png'
+import collisionImgOff from './assets/collision--off.png'
 import './styles/index.css'
-
-const toggles = [
-  {dataset: 'THEFT', label: 'theft'},
-  {dataset: 'COLLISIONS', label: 'collisions'},
-]
 
 const OverlayToggles = props => {
   const [isOpen, setIsOpen] = useState(false)
@@ -28,26 +29,38 @@ const OverlayToggles = props => {
           <p>Map Layers</p>
           <ul className="heatmap-list">
             <li>
-              <RackBtn />
+              <RackBtn
+                icon={rackImgOn}
+                onClick={() => changeHeatmap(null, getData(null))}
+              />
             </li>
             <li>
-              <CollisionBtn />
+              <CollisionBtn
+                icon={
+                  activeHeatmapData['COLLISIONS']
+                    ? collisionImgOn
+                    : collisionImgOff
+                }
+                onClick={() =>
+                  changeHeatmap('COLLISIONS', getData('COLLISIONS'))
+                }
+              />
             </li>
             <li>
-              <ThiefBtn />
+              <ThiefBtn
+                icon={
+                  activeHeatmapData['THEFT']
+                    ? thiefImgOn
+                    : thiefImgOff
+                }
+                onClick={() =>
+                  changeHeatmap('THEFT', getData('THEFT'))
+                }
+              />
             </li>
           </ul>
         </div>
       </div>
-      {toggles.map(({dataset, label}) => (
-        <button
-          type="button"
-          onClick={() => changeHeatmap(dataset, getData(dataset))}
-          key={dataset}
-        >
-          {label} ({activeHeatmapData[dataset] ? 'on' : 'off'})
-        </button>
-      ))}
     </div>
   )
 }
