@@ -3,6 +3,8 @@ import React, {useContext, useLayoutEffect} from 'react'
 import {MapContext} from '../../context'
 import './index.css'
 import bikeRacks from '../../bike-racks'
+import bikeTheft from '../../bike-theft'
+// import bikeCollisions from '../../bike-collisions'
 
 const Map = props => {
   const {
@@ -286,29 +288,23 @@ const Map = props => {
     setMap(gmap)
 
     bikeRacks.forEach(rack => {
+      if (!rack.coords) return
       new google.maps.Marker({
         position: rack.coords,
         map: gmap,
-        title: 'Hello World!',
+        title: String(rack.fields.number_of_racks),
       })
     })
 
-    let heatmapData = [
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-      new google.maps.LatLng(49.2827, -123.1207),
-    ]
+    const bikeTheftData = []
+    for (let d in bikeTheft) {
+      bikeTheftData.push(
+        new google.maps.LatLng(
+          bikeTheft[d].Latitude,
+          bikeTheft[d].Longitude,
+        ),
+      )
+    }
 
     var gradient = [
       'rgba(0, 255, 255, 0)',
@@ -328,7 +324,7 @@ const Map = props => {
     ]
 
     let heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData,
+      data: bikeTheftData,
     })
     heatmap.set('gradient', heatmap.get('gradient') ? null : gradient)
     heatmap.set('radius', heatmap.get('radius') ? null : 50)
