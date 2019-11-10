@@ -3,8 +3,6 @@ import React, {useContext, useLayoutEffect} from 'react'
 import {MapContext} from '../../context'
 import './index.css'
 import bikeRacks from '../../bike-racks'
-import bikeTheft from '../../bike-theft'
-import bikeCollisions from '../../bike-collisions'
 
 const Map = props => {
   const {
@@ -288,10 +286,11 @@ const Map = props => {
     setMap(gmap)
 
     let rackImage = {
-      url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      url:
+        'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
       size: new google.maps.Size(20, 32),
       origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(0, 32)
+      anchor: new google.maps.Point(0, 32),
     }
 
     bikeRacks.forEach(rack => {
@@ -303,52 +302,6 @@ const Map = props => {
         icon: rackImage,
       })
     })
-
-    const bikeTheftData = []
-    for (let d in bikeTheft) {
-      bikeTheftData.push(
-        new google.maps.LatLng(
-          bikeTheft[d].Latitude,
-          bikeTheft[d].Longitude,
-        ),
-      )
-    }
-
-    const bikeCollisionsData = []
-    for (let d in bikeCollisions) {
-      bikeCollisionsData.push(
-        new google.maps.LatLng(
-          bikeCollisions[d].Latitude,
-          bikeCollisions[d].Longitude,
-        ),
-      )
-    }
-
-    var gradient = [
-      'rgba(0, 255, 255, 0)',
-      'rgba(0, 255, 255, 1)',
-      'rgba(0, 191, 255, 1)',
-      'rgba(0, 127, 255, 1)',
-      'rgba(0, 63, 255, 1)',
-      'rgba(0, 0, 255, 1)',
-      'rgba(0, 0, 223, 1)',
-      'rgba(0, 0, 191, 1)',
-      'rgba(0, 0, 159, 1)',
-      'rgba(0, 0, 127, 1)',
-      'rgba(63, 0, 91, 1)',
-      'rgba(127, 0, 63, 1)',
-      'rgba(191, 0, 31, 1)',
-      'rgba(255, 0, 0, 1)',
-    ]
-
-    let heatmap = new google.maps.visualization.HeatmapLayer({
-      // data: bikeTheftData,
-      data: bikeCollisionsData,
-    })
-    heatmap.set('gradient', heatmap.get('gradient') ? null : gradient)
-    heatmap.set('radius', heatmap.get('radius') ? null : 50)
-
-    heatmap.setMap(gmap)
   }, [map, setMap, setDirectionsService, setDirectionsRenderer])
 
   return (
