@@ -2,6 +2,7 @@ import React, {useCallback, useContext, useState} from 'react'
 import {MapContext} from '../../context'
 import HeatMapContainer from '../HeatMap/HeatMapContainer';
 import StackBtn from '../HeatMap/StackBtn';
+import './index.css'
 
 const BikeRoutingForm = props => {
   const {directionsService, directionsRenderer} = useContext(
@@ -16,7 +17,7 @@ const BikeRoutingForm = props => {
       var request = {
         origin: fromValue,
         destination: toValue,
-        travelMode: 'DRIVING',
+        travelMode: 'BICYCLING',
       }
       directionsService.route(request, function(result, status) {
         if (status === 'OK') {
@@ -30,20 +31,26 @@ const BikeRoutingForm = props => {
   )
 
   return (
-    <form onSubmit={handleSubmit} {...props}>
+    <form className="search-form" onSubmit={handleSubmit} {...props}>
       <input
         value={fromValue}
         onChange={e => setFromValue(e.target.value)}
         type="text"
+        className="pointA"
+        placeholder="From"
       />
       <input
         value={toValue}
         onChange={e => setToValue(e.target.value)}
         type="text"
+        className="pointB"
+        placeholder="To"
       />
-      <button type="submit">route</button>
       <StackBtn />
       <HeatMapContainer />
+      <button type="submit" hidden>
+        Go
+      </button>
     </form>
   )
 }
