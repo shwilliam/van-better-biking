@@ -287,12 +287,20 @@ const Map = props => {
 
     setMap(gmap)
 
+    let rackImage = {
+      url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+      size: new google.maps.Size(20, 32),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(0, 32)
+    }
+
     bikeRacks.forEach(rack => {
       if (!rack.coords) return
       new google.maps.Marker({
         position: rack.coords,
         map: gmap,
         title: String(rack.fields.number_of_racks),
+        icon: rackImage,
       })
     })
 
