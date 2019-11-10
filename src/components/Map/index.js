@@ -274,6 +274,7 @@ const Map = props => {
         strokeColor: 'red',
       },
     })
+    const infowindow = new google.maps.InfoWindow()
 
     const bikeLayer = new google.maps.BicyclingLayer()
     bikeLayer.setMap(gmap)
@@ -295,12 +296,24 @@ const Map = props => {
 
     bikeRacks.forEach(rack => {
       if (!rack.coords) return
-      new google.maps.Marker({
+      const marker = new google.maps.Marker({
         position: rack.coords,
         map: gmap,
         title: String(rack.fields.number_of_racks),
         icon: rackImage,
       })
+      google.maps.event.addListener(
+        marker,
+        'click',
+        (function(marker) {
+          return function() {
+            infowindow.setContent(
+              String(rack.fields.number_of_racks || 0),
+            )
+            infowindow.open(map, marker)
+          }
+        })(marker),
+      )
     })
   }, [map, setMap, setDirectionsService, setDirectionsRenderer])
 
