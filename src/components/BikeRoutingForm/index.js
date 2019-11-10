@@ -29,22 +29,24 @@ const BikeRoutingForm = props => {
   )
 
   return (
-    <form className='search-form' onSubmit={handleSubmit} {...props}>
+    <form className="search-form" onSubmit={handleSubmit} {...props}>
       <input
         value={fromValue}
         onChange={e => setFromValue(e.target.value)}
         type="text"
-        className='pointA'
+        className="pointA"
         placeholder="From"
       />
       <input
         value={toValue}
         onChange={e => setToValue(e.target.value)}
         type="text"
-        className='pointB'
+        className="pointB"
         placeholder="To"
       />
-      {/* <button className="submit-button">submit</button> */}
+      <button type="submit" hidden>
+        Go
+      </button>
     </form>
   )
 }
