@@ -4,7 +4,7 @@ import {MapContext} from '../../context'
 import './index.css'
 import bikeRacks from '../../bike-racks'
 import bikeTheft from '../../bike-theft'
-// import bikeCollisions from '../../bike-collisions'
+import bikeCollisions from '../../bike-collisions'
 
 const Map = props => {
   const {
@@ -314,6 +314,16 @@ const Map = props => {
       )
     }
 
+    const bikeCollisionsData = []
+    for (let d in bikeCollisions) {
+      bikeCollisionsData.push(
+        new google.maps.LatLng(
+          bikeCollisions[d].Latitude,
+          bikeCollisions[d].Longitude,
+        ),
+      )
+    }
+
     var gradient = [
       'rgba(0, 255, 255, 0)',
       'rgba(0, 255, 255, 1)',
@@ -332,7 +342,8 @@ const Map = props => {
     ]
 
     let heatmap = new google.maps.visualization.HeatmapLayer({
-      data: bikeTheftData,
+      // data: bikeTheftData,
+      data: bikeCollisionsData,
     })
     heatmap.set('gradient', heatmap.get('gradient') ? null : gradient)
     heatmap.set('radius', heatmap.get('radius') ? null : 50)
