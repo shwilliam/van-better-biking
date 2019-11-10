@@ -2,7 +2,7 @@ import React from 'react'
 
 const CollisionBtn = ({icon, ...props}) => (
   <button type="button" {...props}>
-    <img src={icon} />
+    <img alt="Bike accidents" src={icon} />
   </button>
 )
 

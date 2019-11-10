@@ -10,6 +10,7 @@ export const MapContextProvider = ({children}) => {
   const [directionsService, setDirectionsService] = useState()
   const [heatmaps, setHeatmaps] = useState({})
   const [activeHeatmapData, setActiveHeatmapData] = useState({})
+  const [markers, setMarkers] = useState()
 
   useEffect(() => {
     if (!map) return
@@ -69,6 +70,8 @@ export const MapContextProvider = ({children}) => {
         setDirectionsService,
         changeHeatmap,
         activeHeatmapData,
+        markers,
+        setMarkers,
       }}
     >
       {children}

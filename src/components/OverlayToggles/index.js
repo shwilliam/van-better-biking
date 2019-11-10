@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useEffect, useContext, useState} from 'react'
 import {MapContext} from '../../context'
 import getData from '../../utils/get-data'
 import StackBtn from './StackBtn'
@@ -15,7 +15,20 @@ import './styles/index.css'
 
 const OverlayToggles = props => {
   const [isOpen, setIsOpen] = useState(false)
-  const {changeHeatmap, activeHeatmapData} = useContext(MapContext)
+  const {changeHeatmap, activeHeatmapData, markers} = useContext(
+    MapContext,
+  )
+  const [markersShowing, setMarkersShowing] = useState(true)
+
+  useEffect(() => {
+    if (!markers) return
+
+    if (markersShowing) {
+      markers.forEach(el => el.setVisible(true))
+    } else {
+      markers.forEach(el => el.setVisible(false))
+    }
+  }, [markers, markersShowing])
 
   return (
     <div {...props}>
@@ -30,8 +43,8 @@ const OverlayToggles = props => {
           <ul className="heatmap-list">
             <li>
               <RackBtn
-                icon={rackImgOn}
-                onClick={() => changeHeatmap(null, getData(null))}
+                icon={markersShowing ? rackImgOn : rackImgOff}
+                onClick={() => setMarkersShowing(!markersShowing)}
               />
             </li>
             <li>

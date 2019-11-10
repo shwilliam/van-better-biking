@@ -2,7 +2,7 @@ import React from 'react'
 
 const ThiefBtn = ({icon, ...props}) => (
   <button type="button" {...props}>
-    <img src={icon} />
+    <img alt="Crime" src={icon} />
   </button>
 )
 

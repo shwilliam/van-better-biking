@@ -2,7 +2,7 @@ import React from 'react'
 
 const Rack = ({icon, ...props}) => (
   <button type="button" {...props}>
-    <img src={icon} />
+    <img alt="Bike racks" src={icon} />
   </button>
 )
 
