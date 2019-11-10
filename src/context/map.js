@@ -8,38 +8,55 @@ export const MapContextProvider = ({children}) => {
   const [map, setMap] = useState()
   const [directionsRenderer, setDirectionsRenderer] = useState()
   const [directionsService, setDirectionsService] = useState()
-  const [activeHeatmap, setActiveHeatmap] = useState()
-  const [heatmap, setHeatmap] = useState()
-
-  const changeHeatmap = data => {
-    if (!map) return
-
-    if (!heatmap) {
-      const gHeatmap = new google.maps.visualization.HeatmapLayer({})
-
-      gHeatmap.set(
-        'gradient',
-        gHeatmap.get('gradient') ? null : heatmapGradient,
-      )
-      gHeatmap.set('radius', gHeatmap.get('radius') ? null : 50)
-
-      gHeatmap.setMap(map)
-      setHeatmap(gHeatmap)
-    }
-
-    setActiveHeatmap(data)
-  }
+  const [heatmaps, setHeatmaps] = useState({})
+  const [activeHeatmapData, setActiveHeatmapData] = useState({})
 
   useEffect(() => {
-    if (!heatmap) return
+    if (!map) return
 
-    heatmap.setData([])
-    setTimeout(() => {
-      heatmap.setData(activeHeatmap)
-    }, 0)
+    // set up heatmap layers
+    const theftHeatmap = new google.maps.visualization.HeatmapLayer(
+      {},
+    )
+    const collisionsHeatmap = new google.maps.visualization.HeatmapLayer(
+      {},
+    )
 
-    heatmap.set(activeHeatmap)
-  }, [heatmap, activeHeatmap])
+    theftHeatmap.set(
+      'gradient',
+      theftHeatmap.get('gradient') ? null : heatmapGradient,
+    )
+    theftHeatmap.set('radius', theftHeatmap.get('radius') ? null : 50)
+
+    collisionsHeatmap.set(
+      'gradient',
+      collisionsHeatmap.get('gradient') ? null : heatmapGradient,
+    )
+    collisionsHeatmap.set(
+      'radius',
+      collisionsHeatmap.get('radius') ? null : 50,
+    )
+
+    theftHeatmap.setMap(map)
+    collisionsHeatmap.setMap(map)
+
+    setHeatmaps({
+      THEFT: theftHeatmap,
+      COLLISIONS: collisionsHeatmap,
+    })
+  }, [map])
+
+  const changeHeatmap = (dataset, data) => {
+    if (!map || !heatmaps) return
+
+    if (dataset && !activeHeatmapData[dataset]) {
+      setActiveHeatmapData({...activeHeatmapData, [dataset]: data})
+      heatmaps[dataset].setData(data)
+    } else if (dataset) {
+      setActiveHeatmapData({...activeHeatmapData, [dataset]: null})
+      heatmaps[dataset].setData([])
+    }
+  }
 
   return (
     <MapContext.Provider
@@ -51,6 +68,7 @@ export const MapContextProvider = ({children}) => {
         directionsService,
         setDirectionsService,
         changeHeatmap,
+        activeHeatmapData,
       }}
     >
       {children}
