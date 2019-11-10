@@ -24,6 +24,7 @@
 
 .heatmap-container {
   background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 5px 0px rgba(77, 77, 77, 1);
   width: 200px;
   text-align: center;
   display: flex;
@@ -39,8 +40,8 @@
 
 .heatmap-container p {
   font-weight: 500;
-  font-size: 16px;
-  padding: 1rem 1.4rem 0.2rem 1.4rem;
+  font-size: 18px;
+  padding: 1rem 1.4rem 0.2rem 1.52rem;
   margin: 0;
   align-self: flex-start;
 }
