@@ -20,14 +20,14 @@ const Map = props => {
       center: {lat: 49.279652, lng: -123.126151},
       zoom: 15,
       styles: [
-        {
-          elementType: 'geometry',
-          stylers: [
-            {
-              color: '#ebe3cd',
-            },
-          ],
-        },
+        // {
+        //   elementType: 'geometry',
+        //   stylers: [
+        //     {
+        //       color: '#ebe3cd',
+        //     },
+        //   ],
+        // },
         {
           elementType: 'labels.text.fill',
           stylers: [
@@ -131,18 +131,6 @@ const Map = props => {
             {
               color: '#447530',
             },
-          ],
-        },
-        {
-          featureType: 'road',
-          elementType: 'geometry',
-          stylers: [
-            {
-              color: '#3299CC',
-            },
-            {
-              weight: '0.8',
-            }
           ],
         },
         {
