@@ -1,26 +1,25 @@
 .search-form {
-    top: unset !important;
-    bottom: 40px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  top: unset !important;
+  bottom: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .search-form > input {
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    width: 125px;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin: 0 10px;
-    padding: 5px 15px;
-    font-size: 16px;
-    color: gray;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  width: 36.4%;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 0 10px;
+  padding: 5px 15px;
+  font-size: 16px;
+  color: gray;
 }
 
 @media only screen and (min-width: 600px) {
-    .search-form > input {
-      width: 25%;
-      margin: 0 25px;
-    }
+  .search-form > input {
+    width: 25%;
   }
+}
