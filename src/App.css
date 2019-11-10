@@ -4,11 +4,12 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 /* move zoom controls out of the way of routing form */
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .gmnoprint.gm-bundled-control.gm-bundled-control-on-bottom {
-    transform: translateY(-120px);
+    transform: translateY(-80px);
   }
 }

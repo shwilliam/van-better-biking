@@ -1,19 +1,17 @@
 import React from 'react'
 import Map from './components/Map'
 import BikeRoutingForm from './components/BikeRoutingForm'
-import OverlayToggle from './components/OverlayToggle'
+import OverlayToggles from './components/OverlayToggles'
 import {MapContextProvider} from './context'
 import './App.css'
-import Weather from './components/Weather'
 
 const App = () => (
   <MapContextProvider>
-    <Map />
-    <OverlayToggle
-      style={{zIndex: 999, position: 'absolute', bottom: 0}}
+    <OverlayToggles />
+    <BikeRoutingForm
+      style={{position: 'absolute', top: 0, zIndex: 999}}
     />
-    <BikeRoutingForm style={{position: 'absolute', top: 0}} />
-    {/* <Weather /> */}
+    <Map />
   </MapContextProvider>
 )
 
