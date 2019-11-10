@@ -2,7 +2,7 @@
 import React, {useContext, useLayoutEffect} from 'react'
 import {MapContext} from '../../context'
 import './index.css'
-import bikeRacks from '../../bike-racks'
+import bikeRacks from '../../data/bike-racks'
 
 const Map = props => {
   const {
