@@ -14,7 +14,7 @@ const BikeRoutingForm = props => {
       var request = {
         origin: fromValue,
         destination: toValue,
-        travelMode: 'DRIVING',
+        travelMode: 'BICYCLING',
       }
       directionsService.route(request, function(result, status) {
         if (status === 'OK') {
