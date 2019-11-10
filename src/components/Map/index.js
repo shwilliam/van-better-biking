@@ -287,7 +287,7 @@ const Map = props => {
 
     let rackImage = {
       url:
-        'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        'https://user-images.githubusercontent.com/49115258/68539322-8b652380-0336-11ea-8a9c-f30411e2eba3.png',
       size: new google.maps.Size(20, 32),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(0, 32),
