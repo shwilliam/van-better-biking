@@ -1,10 +1,10 @@
 # Better Bikes
 
-Better Bikes is a Google Map based navigation web app, developed for the Decode Congestion Hackathon, City of Vancouver, 2019. This was designed and developed in a 36hr sprint by a team of three designers and three developers.
+Better Bikes is a Google Map-Based navigational web application developed for the Decode Congestion Hackathon, hosted by the City of Vancouver in 2019. This was designed and developed in a 36hr sprint by a team of three designers and three developers.
 
-While Google Maps provides generally accurate wayfinding for navigation, it lacks any further information for cyclists to make more informed decisions other concerns around cycling. One of these major concerns, especially in Vancouver, BC, is bike theft. Better Bikes helps provide better context for this issue by overlaying heat maps unto to Google Maps navigation interface. These heat maps are correlated to bike theft, bike collisions, and potentially more variables. By also having all bike racks available in Vancouver displayed over the Google Map interface, users can make inferences and decisions by looking at which bike racks are in less crime dense areas. By this, users are given more agency and assisted in making safer decisions of where they can lock up their bikes in Vancouver, BC.
+While Google Maps provides users with convenient navigational way-finding, it does not help cyclists make informed decisions over concerns around cycling. One major concern, especially in Vancouver, B.C., is bike theft. Better Bikes provides a solution to this issue by overlaying heat maps on the Google Maps navigational interface. Areas that contain hotspots indicate higher rates of bike theft, collisions and more. Better Bikes also displays the locations of bike racks across Vancouver, which enables users to make informed decisions on where to safely lock their bikes. 
 
-By virtue of greater agency, more information for better decisions, and better peace of mind for users, this lowers barriers to entry for citizens and tourists to make use of Vancouver’s cycling infrastructure, leading to a safer, more efficient transportation system.
+With more information, users can make better decisions, and feel reassured when parking their bikes in Vancouver. The features provided by Better Bikes encourages cyclists to take advantage of Vancouver’s cycling infrastructure, leading to a safer, and more efficient transportation system.
 
 # Development
 
